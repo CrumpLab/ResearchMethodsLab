@@ -1,0 +1,38 @@
+# MiniProject THREE (Stroop)
+
+<script>
+$("#coverpic").hide();
+</script>
+
+In the second mini-project, you will read, summarize and discuss the paper by @raz_suggestion_2006. This paper provides some background about the Stroop effect, which is a classic measure of selective attention, and then shows one manipulation that effectively helps people overcome Stroop interference. Your task in this lab will be to replicate the Stroop effect in one condition, and then attempt to change the size of the effect (make larger or smaller) in another condition.
+
+## What’s in store
+
+1.  Students read paper and write QALMRI (15-20)
+
+2.  Group discussion about paper (15-20)
+
+3.  Students instructed their task is create their own Stroop design and employ a manipulation that increases or decreases the size of the Stroop effect
+
+4.  Students break into groups and conduct a Stroop experiment, measuring the size of the Stroop effect in a “normal” condition, and in their manipulated condition.
+
+5.  Groups analyze conduct a 2x2 ANOVA to see if their interaction was significant
+
+## Some background on the Stroop effect
+
+The Stroop effect is a well-known and classic phenomena in experimental psychology. The effect was first reported by @Stroop1935. Several hundreds of Stroop experiments have been conducted since 1935, for a review see [@macleod_half_1991].
+In a typical Stroop experiment, subjects name the color of words as fast as they can. The trick is that sometimes the color of the word is the same as the name of the word, and sometimes it is not. Here are some examples:
+
+```{r,echo=FALSE}
+knitr::include_graphics("figures/Stroop.png")
+```
+
+Congruent trials occur when the color and word match. So, the correct answers for each of the congruent stimuli shown would be to say, red, green, blue and yello. Incongruent trials occur when the color and word mismatch. The correct answers for each of the incongruent stimuli would be: blue, yellow, red, green.
+
+The Stroop effect is an example of a well-known phenomena. What happens is that people are faster to name the color of the congruent items compared to the color of the incongruent items. This difference (incongruent reaction time - congruent reaction time) is called the Stroop effect.
+
+Many researchers argue that the Stroop effect measures something about selective attention, the ability to ignore distracting information. In this case, the target information that you need to pay attention to is the color, not the word. For each item, the word is potentially distracting, it is not information that you are supposed to respond to. However, it seems that most people can't help but notice the word, and their performance in the color-naming task is subsequently influenced by the presence of the distracting word. 
+
+People who are good at ignoring the distracting words should have small Stroop effects. They will ignore the word, and it won't influence them very much for either congruent or incongruent trials. As a result, the difference in performance (the Stroop effect) should be fairly small (if you have "good" selective attention in this task). People who are bad at ignoring the distracting words should have big Stroop effects. They will not ignore the words, causing them to be relatively fast when the word helps, and relatively slow when the word mismatches. As a result, they will show a difference in performance between the incongruent and congruent conditions.
+
+If we take the size of the Stroop effect as a measure of selective attention, we can then start wondering what sorts of things improve selective attention (e.g., that make the Stroop effect smaller), and what kinds of things impair selective attention (e.g., make the Stroop effect bigger).

@@ -1,0 +1,162 @@
+# MiniProject TWO (Task-switching)
+
+<script>
+$("#coverpic").hide();
+</script>
+
+In the second mini-project, you will read, summarize and discuss the paper by @stoet_are_2013. Then, you will attempt to replicate their results in the lab, by conducting an experiment and analyzing the data.
+
+## What’s in store
+
+1.  Students read paper and write QALMRI (15-20)
+
+2.  Group discussion about paper (15-20)
+
+3.  Students download the task-switching program available from the website and individually complete the task. Individual students then enter their data in the master spreadsheet
+
+4.  Discussion of how to analyze the data. Major analysis goals are:
+
+    a. Was there a mixing cost? Compare pure lists to mixed lists
+
+    b. Was there a switching cost? Compare switch vs. repeat trials in pure lists
+
+    c. Did these effects depend on gender? Did the women have a smaller mixing cost than the men? Did the women have a smaller switching cost than the men?
+
+5.  Students break into groups to analyze the data.
+
+## Critical Concepts
+
+### Multiple Dependent and Independent Variables
+
+In lab 5 we begin looking at more complex designs that involve multiple dependent or and independent variables. For example, we can look at the dependent variable of reaction time or error rate, which are our two difference measured variables. There are also three independent variables, including gender (male vs female), block (pure list vs. mixed list), and trial sequence (repeat trial vs. switch trial).
+
+### Main effects and interactions
+
+Throughout this course we will be talking a lot about main effects and interactions. Feel free to jump ahead in the textbook and learn more about them.
+
+Main effects refer to the influence of single independent variables. And, each independent variable always has one main effect. So, we could look at the main effect of gender, block, or trial sequence. The main effect is like conducting a one-way ANOVA on the variable of interest, collapsing over the other variables. For example, a main effect of trial sequence usually shows slower mean reaction times in the switch condition compared to the repeat condition. This is called the task-switching cost, or also the task-switching effect.
+
+Interactions occur when the effect of one independent variable depends on the levels of another independent variable. For example, if women actually multi-task better than men, then we should expect an interaction between gender and task-switching. Specifically, women should be better at task-switching than men. This would mean that women should have smaller task-switching costs (meaning they are unaffected by switching) compared to men (who should have bigger task-switching costs if they are more affected by switching).
+
+If women have smaller task switching costs than men, then the effect of task-switching independent variable (repeat vs. switch) will depend on the level of the gender variable (women vs. men), which is the definition of an interaction.
+
+### Manipulating an Effect
+
+Things get complicated when we add more dependent and independent variables, and it can be easy to lose track of what is going on in an experiment.
+
+Many experiments are conducted for the purpose of better understanding some phenomena. For example, researchers observe phenomena like the task-switching effect, they create theories to explain the phenomena, then they test their theories by running more experiments.
+
+A primary question is often to identify factors that manipulate, influence, or somehow change the phenomena of interest. We know that switching between tasks can hurt performance, and we measure this cost by calculating a switch cost, which is the difference in performance between switching conditions and repeating conditions. What kinds of factors would make this cost ? Perhaps extended practice, time of day, gender, personality, motivation, drug interventions, details of the task, and many other factors could make the normal cost get smaller. Many of these factors might also make the effect get larger. And, knowledge of what makes switching costs smaller or larger can be used to test theories, which need to explain how and why those factors cause switching costs to change.
+
+The Stoet et al. (2013) took this approach to determine if switch costs are smaller for men than women. Notice we have been talking about switch costs, which is the phenonemon and effect of interest. We have not been talking too much about the dependent variable of reaction times that we use to compute the switch costs. Remember that switch costs are computed as RT switch - RT repeat.
+
+### Reducing a two-factor design to a single-factor design using difference scores
+
+We can use the term switch cost as a convenient term to describe the effect of the switching variable on reaction times. We can also think of the switch cost as the dependent variable of interest, rather than the base reaction time scores. Thinking of the switch cost this way can change how you conceptualize the design.
+
+For example, how many independent variables are in a design testing whether women have smaller switch costs than men? The answer could be two or one, depending on how you think of the design.
+
+If we go with two, then the design involves the independent variables gender (women vs. men) and trial sequence (switch vs. repeat), and the dependent variable of reaction time. This design would have two main effects (effect of gender, and effect of switching), and one interaction (gender x switching). We would be mainly interested in the interaction. For example, women may have a smaller difference in mean reaction time between the switch and repeat conditions than men.
+
+We can reduce the design to a simple single-factor design. To do so, we create a new dependent variable called switch costs. For example, for each subject we compute the mean reaction in the switch and repeat condition. Then we calculate the switch costs (difference between switch and repeat) for each subject. Now, each subject has one switch cost, rather than two reaction times. Now, the design would have gender as the single independent variable, and switch costs as the dependent variable. To determine whether women have smaller costs than men would you could run a t-test comparing the switch-costs between conditions.
+
+In addition to this material below, you can also look at the examples of conducting [factorial ANOVAs in software using the lab manual from PSYC 3400 Introductory Statistics](https://crumplab.github.io/statisticsLab/lab-11-mixed-factorial-anova.html), and refresh your understanding of factorial ANOVAs by [reading the Factorial ANOVA chapter from the PSYC 3400 textbook](https://crumplab.github.io/statistics/factorial-anova.html).
+
+## Data-analysis tips
+
+To give you an idea about the analyses you will be performing, we will again create simulated data to mimic aspects of the experiment, and then go through the steps of performing the analysis. 
+
+We will simulate data for the switching cost. Specifically, we will imagine that women have a smaller switching cost than men. The code below generates sample data for 10 women and 10 men, who each have mean reactions in the repeat and switch conditions. For women, the mean reaction times were 580 ms for repeat and 600 ms for switch sequences, for a total expected switch cost of 20 ms. For men, the mean reaction times were 580 ms for repeat and 650 ms for switch sequences, for a total expected switch cost of 70 ms. 
+
+### Simulating the data
+
+```{r}
+women_switch <-round(rnorm(10,600,20))
+women_repeat <-round(rnorm(10,580,20))
+men_switch <-round(rnorm(10,650,20))
+men_repeat <-round(rnorm(10,580,20))
+all_data<-data.frame(Subject=c(rep(seq(1,10,1),2),
+                               rep(seq(11,20,1),2)),
+                     Gender=rep(c("Female","Male"),each=20),
+                     Sequence=rep(rep(c("switch","repeat"),each=10),2),
+                     RT=c(women_switch,women_repeat,
+                          men_switch,men_repeat))
+
+knitr::kable(all_data)
+```
+
+### Plotting the data
+
+We can plot the data at least two ways. See the bar and line graphs below. Note that the x-axis changes between graphs.
+
+```{r}
+library(ggplot2)
+library(plyr)
+sde<-function(x){sd(x)/length(x)}
+plot_means<-ddply(all_data,.(Gender,Sequence),summarise,
+                       MeanRT=mean(RT),
+                       SE=sde(RT))
+
+limits <- aes(ymax = MeanRT + SE, ymin = MeanRT - SE)
+
+ggplot(plot_means,aes(x=Gender, y=MeanRT, group=Sequence,fill=Sequence))+
+  geom_bar(position="dodge",stat="identity")+
+  geom_errorbar(limits, width=.3,position=position_dodge(.9))+
+  theme_classic(base_size=12)+
+  coord_cartesian(ylim=c(500,700))+
+  ylab("Mean RT")+
+  xlab("Trial sequence")
+
+```
+
+
+```{r}
+ggplot(plot_means,aes(x=Sequence, y=MeanRT, group=Gender,shape=Gender))+
+  geom_line()+
+  geom_point()+
+  geom_errorbar(limits, width=.2)+
+  theme_classic(base_size=12)+
+  ylab("Mean RT")+
+  xlab("Trial sequence")
+```
+
+The graphs show that the switch costs (difference between repeat and switch trials) is smaller for women and men. Which is good, because we are simulating the data with this outcome in mind.
+
+### Running the ANOVA
+
+The next step is to conduct an ANOVA. This design has two factors or independent variables, gender and trial sequence. The gender variable is between-subjects, and the trial sequence variable is within subjects. So, we will run a 2 (Gender: Female vs. Male) x 2 (trial sequence: Repeat vs. Switch) mixed design ANOVA with Gender as the betwen-subjects factor, and trial sequence as the within-subjects factor.
+
+
+```{r}
+library(broom)
+library(xtable)
+all_data$Subject<-as.factor(all_data$Subject)
+aov.out<-aov(RT~Gender*Sequence+Error(Subject/Sequence),all_data)
+aov_summary<-summary(aov.out)
+knitr::kable(xtable(aov_summary))
+mt<-model.tables(aov.out,"means")
+mt
+```
+
+The above shows the ANOVA table and the means for the main effects and interaction. We also conduct t.test comparisons to look at the switch costs separately for men and women.
+
+```{r}
+FemaleT<-t.test(RT~Sequence,all_data[all_data$Gender=="Female",],paired=TRUE,var.equal=TRUE)
+MaleT<-t.test(RT~Sequence,all_data[all_data$Gender=="Male",],paired=TRUE,var.equal=TRUE)
+FemaleT
+MaleT
+```
+
+
+## Writing up the results
+
+The next step is to interpret the results and write them up. Here is an example write-up.
+
+
+The mean reaction times for each subject in trial sequence condition were submitted to a 2 (Gender: Female vs. Male) x 2 (trial sequence: Repeat vs. Switch) mixed design ANOVA with Gender as the betwen-subjects factor, and trial sequence as the within-subjects factor. Mean reaction times in each condition collapsed across subjects are displayed in Figure 1.
+
+The main effect of gender was significant, F(`r aov_summary[[1]][[1]]$Df[1]`, `r aov_summary[[1]][[1]]$Df[2]`) = `r round(aov_summary[[1]][[1]]$F[1],digits=2)`, MSE = `r round(aov_summary[[1]][[1]]$"Mean Sq"[2],digits=2)`, p < `r round(aov_summary[[1]][[1]][[5]][1],digits=3)`. Women (`r round(mt$tables$Gender[1])` ms) had faster mean reaction times than men (`r round(mt$tables$Gender[2])` ms). 
+
+The main effect of trials sequence was significant, F(`r aov_summary[[2]][[1]]$Df[1]`, `r aov_summary[[2]][[1]]$Df[3]`) = `r round(aov_summary[[2]][[1]]$F[1],digits=2)`, MSE = `r round(aov_summary[[2]][[1]]$"Mean Sq"[3],digits=2)`, p < `r round(aov_summary[[2]][[1]][[5]][1],digits=3)`. Repeat trials (`r round(mt$tables$Sequence[1])`) had faster mean reaction times than switch trials (`r round(mt$tables$Sequence[2])`).
+
+Most important was the significant two-way interaction between gender and trial sequence, F(`r aov_summary[[2]][[1]]$Df[2]`, `r aov_summary[[2]][[1]]$Df[3]`) = `r round(aov_summary[[2]][[1]]$F[2],digits=2)`, MSE = `r round(aov_summary[[2]][[1]]$"Mean Sq"[3],digits=2)`, p < `r round(aov_summary[[2]][[1]][[5]][2],digits=3)`. We interpreted the interaction further by conducting the following comparisons. Women showed a significant switch cost, t(9) = `r round(FemaleT$statistic,digits=2)`, p = `r round(FemaleT$p.value,digits=3)`, with faster mean reaction times for repeat (`r round(mt$tables$"Gender:Sequence"[1,1])`) than switch (`r round(mt$tables$"Gender:Sequence"[1,2])`) trials. Men also showed a significant switch cost, t(9) = `r round(MaleT$statistic,digits=2)`, p = `r round(MaleT$p.value,digits=3)`, with faster mean reaction times for repeat (`r round(mt$tables$"Gender:Sequence"[2,1])`) than switch trials (`r round(mt$tables$"Gender:Sequence"[2,2])`). The presence of an interaction indicates that the size of the switch cost for women was significantly smaller than the size of the switch cost for men.

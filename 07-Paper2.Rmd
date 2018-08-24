@@ -1,0 +1,130 @@
+# Major Project TWO (2 labs)
+
+<script>
+$("#coverpic").hide();
+</script>
+
+
+## Overview
+
+In this project you will attempt to replicate a classic study on face perception [@yin_looking_1969]. A replication of the experiment has already been designed. To collect data, you will first participate as a subject in the experiment. Then, as a class you will be introduced to the published paper. You will read the paper and it in class. Then, the class will analyze the collected data to determine whether or not the major effects of interest have been replicated. Data will be collected using pen and paper methods, and analyzed by computer software. Each student will write a 5+ page, APA style report on the project.
+
+## Things you will learn:
+
+-   Reading and citing primary source material
+
+-   Writing a brief APA style research report
+
+-   Conducting and reporting Factorial designs
+
+## Background readings:
+
+Available on the lab website, or download from Brooklyn College library
+
+## Grade
+
+-   10% of final grade
+
+-   Graded by your lab instructor. Lab instructor sets due date, and determines whether revised drafts are submittable.
+
+-   If you submit completed versions of all paper assignments (1, 2, and 3), then you get to drop your lowest paper grade from paper 1 or 2. Specifically, you will receive your highest grade from paper 1 or 2 for both papers, thereby eliminating the lower grade. This allows room to learn and improve as you go.
+
+## Writing the paper
+
+There are many resources for help on writing an APA style research report in the lab manual, on the textbook, and the website. Check them out. As well, here is a rough roadmap for writing paper 2.
+
+### APA formatting, Title and Abstract
+
+-   Use APA formatting rules.
+
+-   Create a suitable title for the paper
+
+-   Write the abstract : No more than 250 words. The aim is to briefly describe the issue at hand, the experiment, and the results.
+
+### Introduction (around 2 double-spaced pages)
+
+The goal of the introduction is to first put the research into a broader context, and then narrow the focus to describe the specific research aims.
+
+1.  A. Opening section: (starting broad)
+
+    -   about 1 paragraph
+
+    -   Discuss a real-world example of the general phenomena under investigation by the paper
+
+    -   Tell the reader that the purpose of the current experiment is to conduct a replication of the work in question
+
+    -   Establish the domain and big questions.
+
+2.  Middle section: Prior work
+
+    -   Discuss some examples of previous research that are similar to the present research. You have an opportunity here to look this kind of research up on Google Scholar. One or two examples ought to be enough.
+
+    -   Explain the specific question that is being asked in this replication work.
+
+3.  Final section: (briefly explain the present aims, the experiment and what you expect to find)
+
+    -   Explain the hypotheses (alternatives)
+
+    -   Explain the logic of how the hypotheses will be tested
+
+    -   Briefly explain what the participants will be doing in the task
+
+    -   Briefly give predictions for performance in each condition
+
+### Methods (about 1 page)
+
+The methods section should be a complete recipe that anyone could follow to replicate your experiment. There are lots of details that you can include, some of these are listed below. Be brief and concise
+
+1.  Participants
+
+    -   how many people?
+
+    -   where did they come from?
+
+2.  Materials
+
+    -   what were the stimuli?
+
+    -   how were they organized?
+
+3.  Design & Procedure
+
+    -   What was the design
+
+    -   What were the independent variable(s)
+
+    -   What was the dependent variable
+
+    -   Within or between subjects?
+
+    -   How were the stimuli for each trial chosen
+
+    -   Describe the steps each participant took to complete the experiment
+
+### Results
+
+The result section is used to report the patterns in the data, and the statistical support for those patterns. You will compute the results using SPSS in the lab computers. The lab manual can be consulted for help on running statistical tests, and for reporting results.
+
+-   Describe the statistical analysis
+
+-   Tell the reader where they can see the data. E.g., the results of experiment 1 are presented in table 1, or in figure 1
+
+-   Make a table or figure to display the data in your paper
+
+-   Report the statistical test, and the pattern of the means.
+
+### Discussion
+
+The discussion can be used to briefly restate verbally the pattern of the most important results, and then to relate the results to theory and ideas developed in the introduction
+
+-   Highlight the main findings from the experiment
+
+-   Discuss how the data can be explained by the hypothesis. What inferences do you make about the hypotheses based on the research findings?
+
+-   Broaden your discussion. Can the findings be explained by an alternative theory? What can be generalized to the real world? Are there important confounds that prevent us from interpreting our results?
+
+### References and Figures or Tables
+
+-   Include citations used in the paper using APA style format
+
+-   Include a figure or table to show the results
